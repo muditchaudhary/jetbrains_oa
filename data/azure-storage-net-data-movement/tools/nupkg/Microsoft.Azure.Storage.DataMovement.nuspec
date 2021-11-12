@@ -1,0 +1,46 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata minClientVersion="2.12">
+    <id>Microsoft.Azure.Storage.DataMovement</id>
+    <version>2.0.4</version>
+    <title>Microsoft Azure Storage Data Movement Library</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+	<copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=624876</licenseUrl>
+    <projectUrl>https://github.com/Azure/azure-storage-net-data-movement</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Microsoft Azure Storage DataMovement Library offers a set of APIs extending the existing Azure Storage .Net Client Library to help customer transfer Azure Blob and File Storage with high-performance, scalability and reliability.
+      For this release, see notes - https://github.com/Azure/azure-storage-net-data-movement/blob/master/README.md and https://github.com/Azure/azure-storage-net-data-movement/blob/master/changelog.txt
+      Microsoft Azure Storage team's blog - http://blogs.msdn.com/b/windowsazurestorage/</description>
+    <summary>A client library designed for high-performance and scalable uploading, downloading and copying data to and from Microsoft Azure Blob and File Storage</summary>
+    <tags>Microsoft, Azure, Storage, Blob, File, DataMovement, Upload, Download, Copy, High-Performance, Scalable, Reliable, windowsazureofficial</tags>
+    <dependencies>
+      <group targetFramework="net452">
+        <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="1.8.0.0" />
+        <dependency id="Microsoft.Azure.Storage.File" version="11.2.3" />
+        <dependency id="Microsoft.Azure.Storage.Blob" version="11.2.3" />
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="Mono.Posix.NETStandard" version="1.0.0-beta2" />
+        <dependency id="NETStandard.Library" version="2.0.1" />
+        <dependency id="Microsoft.Azure.Storage.File" version="11.2.3" />
+        <dependency id="Microsoft.Azure.Storage.Blob" version="11.2.3" />
+        <dependency id="System.Runtime.Serialization.Xml" version="4.3.0" />
+        <dependency id="System.Threading.ThreadPool" version="4.3.0" />
+        <dependency id="System.Net.Http" version="4.3.4" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Data" targetFramework="net452" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="" />
+    </frameworkAssemblies>
+    <references>
+      <group>
+        <reference file="Microsoft.Azure.Storage.DataMovement.dll" />
+      </group>
+    </references>
+  </metadata>
+</package>

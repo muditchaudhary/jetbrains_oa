@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>DMLibTest Class Library</Description>
+    <Authors>emmazhu</Authors>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>DMLibTest</AssemblyName>
+    <PackageId>DMLibTest</PackageId>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AssetTargetFallback>$(AssetTargetFallback);dnxcore50;portable-net45+win8</AssetTargetFallback>
+    <RuntimeFrameworkVersion>2.0</RuntimeFrameworkVersion>
+    <DebugType>portable</DebugType>
+    <DefineConstants>TRACE;DMLIB_TEST;DOTNET5_4;DNXCORE50;EXPECT_INTERNAL_WRAPPEDSTORAGEEXCEPTION;RUNTIME_INFORMATION</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\lib\LongPathFileStream.cs" Link="Framework\LongPathFileStream.cs" />
+    <Compile Include="..\..\lib\FileSecurityOperations.cs" Link="Framework\FileSecurityOperations.cs" />
+    <Compile Include="..\..\lib\FileSecurityNativeMethods.cs" Link="Framework\FileSecurityNativeMethods.cs" />
+    <Compile Include="..\..\test\DMLibTest\Cases\*.cs">
+      <Link>Cases\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\..\test\DMLibTest\Framework\*.cs">
+      <Link>Framework\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\..\test\DMLibTest\Generated\*.cs">
+      <Link>Generated\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\..\test\DMLibTest\Util\*.cs">
+      <Link>Util\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.2.2" />
+    <PackageReference Include="Microsoft.Azure.Storage.File" Version="11.2.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\DMTestLib\DMTestLib.csproj" />
+    <ProjectReference Include="..\Microsoft.Azure.Storage.DataMovement\Microsoft.Azure.Storage.DataMovement.csproj" />
+    <ProjectReference Include="..\MsTestLib\MsTestLib.csproj" />
+    <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

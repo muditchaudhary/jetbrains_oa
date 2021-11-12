@@ -1,0 +1,224 @@
+2021.05.12 Version 2.0.4
+ * Resolves issue of pointing to incorrect version of Microsoft.Azure.Storage.Blob and File libraries
+ * Upgraded to Microsoft.Azure.Storage.Blob to 11.2.3
+ * Upgraded to Microsoft.Azure.Storage.File to 11.2.3
+ * Upgraded to Microsoft.Azure.Storage.Common to 11.2.3
+ 
+2021.04.15 Version 2.0.3
+ * Nuget Release resolves warning of compatibility issues when Target Framework is using Net Core
+
+2021.04.14 Version 2.0.2
+ * Upgraded Dependency System.Net.Http to v4.3.4 due to vulnerability in v4.3.0 on .Net Core
+
+2020.11.20 Version 2.0.1
+ * All Service on both .Net Framework and .Net Core
+   - Fixed an issue which may cause data loss in copying with ServiceSideSyncCopy, when source and destination are both Page Blob or Azure File.
+
+2020.08.31 Version 2.0.0
+ * All Service on both .Net Framework and .Net Core
+   - Upgraded Microsoft.Azure.Storage.Blob from 11.1.2 to 11.2.2
+   - Upgraded Microsoft.Azure.Storage.File from 11.1.2 to 11.2.2
+   - Added a parameter in SetAttributesCallbackAsync to represent source instance.
+ * Blob Service on both .Net Framework and .Net Core
+   - Added support to set encryption scope when destination is Azure Blob Service.
+ * File Service on both .Net Framework and .Net Core
+   - Added support to preserve preserve file permissions and SMB attributes when copying between Azure File Services.
+ * All Service on .Net Core
+   - Fix an issue of throwing out "illegal character" in some environment without UNC path support.
+
+2020.02.26 Version 1.3.0
+ * All Service on both .Net Framework and .Net Core
+   - Upgraded Microsoft.Azure.Storage.Blob from 11.1.1 to 11.1.2
+   - Upgraded Microsoft.Azure.Storage.File from 11.1.1 to 11.1.2
+   - Added a copy method to leverage Service Side Synchronous Copy to copy between Azure Files, or between Blob and Azure File.
+ * Page Blob and File Service on both .Net Framework and .Net Core
+   - Reduce request of ListRanges when source is small Page Blob or Azure File.
+
+2019.12.17 Version 1.2.0
+ * All Service on both .Net Framework and .Net Core
+   - Upgraded Microsoft.Azure.Storage.Blob from 11.1.0 to 11.1.1
+   - Upgraded Microsoft.Azure.Storage.File from 11.1.0 to 11.1.1
+   - Changed to not send request to query copying status when the Service Side Synchronous Copy can be completed when StartCopy request returns.
+ * File Service on both .Net Framework and .Net Core
+   - Added support to preserve file permission when uploading/downloading from/to local file directory to/from Azure File directory on Windows.
+   - Removed client side file size limitation checking and changed to leverage server side file size checking when transferring destination is Azure File.
+
+2019.09.29 Version 1.1.0
+ * All Service on both .Net Framework and .Net Core
+   - Upgraded Microsoft.Azure.Storage.Blob from 10.0.3 to 11.1.0
+   - Upgraded Microsoft.Azure.Storage.File from 10.0.3 to 11.1.0
+   - Fixed an issue of CPU is still in using when there's nothing being transferred in DataMovement Library
+   - Fixed an issue of reporting exception when running on a specific environment with FIPS enabled
+ * File Service on both .Net Framework and .Net Core
+   - Optimized on Azure File directory creation when uploading from local file directory to Azure File directory and copying from Azure Blob virtual directory to Azure File directory
+   - Added support to copying empty directories when uploading/downloading from/to local file directory to/from Azure File directory
+   - Added support to preserve SMB attributes when uploading/downloading from/to local file directory to/from Azure File directory on Windows. SMB attributes includes creation time, last write time and NTFS File Attributes.
+
+2019.08.08 Version 1.0.0
+ * Blob Service on both .Net Framework and .Net Core
+   - Added a copy method to leverage Service Side Synchronous Copy when copying blobs.
+   - Changed default block size in uploading block blob from 8MB to 4MB.
+
+2019.07.05 Version 0.12.0
+ * All Services on both .Net Framework and .Net Core
+   - Upgraded Microsoft.Azure.Storage.Blob from 10.0.1 to 10.0.3 
+   - Upgraded Microsoft.Azure.Storage.File from 10.0.1 to 10.0.3 
+ * File Service on both .Net Framework and .Net Core
+   - Improved listing performance when transfer source is Azure File Directory. 
+
+2019.04.25 Version 0.11.0
+ * All Services on both .Net Framework and .Net Core
+   - Upgraded azure storage blob client library from 9.4.2 to 10.0.1 
+   - Upgraded azure storage file client library from 9.4.2 to 10.0.1
+   - Changed base namespace from Microsoft.WindowsAzure.Storage.DataMovement to Microsoft.Azure.Storage.DataMovement, assembly name is changed accordingly, nuget package name is not changed.
+
+2019.02.18 Version 0.10.1
+ * All Services on both .Net Framework and .Net Core
+   - Changed dependency from azure storage client library 9.3.2 to azure storage blob client library 9.4.2 and azure storage file client library 9.4.2
+   - Fixed issue of config to disable content MD5 checking in download doesn't take effect during resuming
+   - Fixed issue of hang when uploading from a non-fixed sized stream
+ * Blob Service on both .Net Framework and .Net Core
+   - Fixed issue of block id may not be correct when changing BlockSize during uploading from a non-fixed sized stream to block blob
+ * All Services on .Net Framework
+   - Minimum required .Net Framework version is changed from 4.5 to 4.5.2
+
+2018.10.25 Version 0.9.0
+ * All Services on both .Net Framework and .Net Core
+   - Upgrade azure storage client library to 9.3.2
+   - Enhance exception handling during enumeration to add more detailed error messages
+   - Disable transational MD5 on sync copying when using HTTPS protocol
+   - Change to overwrite destination's metadata with source's metadata in async copying instead of keeping destination's metadata
+   - Add support for download from the same Azure Blob/Azure File to different Stream intances with multiple transfer jobs
+
+2018.07.31 Version 0.8.1
+ * All Services on both .Net Framework and .Net Core
+   - Upgrade azure storage client library to 9.3.0
+   - Enhance exception handling during enumeration to avoid throwing out unexpected exceptions
+ * Blob Service
+   - Optimize on block blob uploading and downloading
+
+2018.06.14 Version 0.8.0
+ * All Services on both .Net Framework and .Net Core
+   - Changed following callbacks to asynchronized methods:
+     ShouldOverwriteCallback --> ShouldOverwriteCallbackAsync
+     ShouldTransferCallback --> ShouldTransferCallbackAsync
+     SetAttributesCallback --> SetAttributesCallbackAsync
+ * Blob Service
+   - Added support for directory markers (hdi_isfolder=true) produced by Hadoop file system drivers for Blob storage
+   - Use the value set in TransferConfigurations.BlockSize as threshold to upload block blob with a single put blob request, the default value is 4MB 
+
+2018.02.10 Version 0.7.1
+ * All Services on both .Net Framework and .Net Core
+   - Upgraded azure storage client library to 9.0.0 
+
+2017.12.22 Version 0.7.0
+ * All Services on both .Net Framework and .Net Core
+   - Added support of uploading from non-seekable, non-fixed sized stream to block blob or append blob
+   - Added support of uploading from non-seekable stream to page blob, azure file
+   - Added error reporting about DataMovement Library doesn't support resuming of transferring from or to a stream 
+ * All Services on .Net Core
+   - Added support of transferring directory with symlinked subdirectories on Unix/Linux platforms
+ * Blob Service on .Net Core
+   - Fixed issue of not escaping '/' correctly when using character other than '/' as delimiter when downloading from a blob directory
+   - Fixed issue of not escaping continuous '/' in destination name correctly when downloading from a blob directory 
+
+2017.12.15 Version 0.6.6
+ * Blob Service
+   - Small file transfer optimization. Use put blob to upload block blob when blob size is small than 4MB to save request and optimize performance.
+
+2017.11.15 Version 0.6.5
+ * All Services
+   - Upgraded azure storage client library to 8.6.0
+   
+2017.10.25 Version 0.6.4
+ * All Services
+   - Add DataMovement library assembly information to UserAgent
+
+2017.10.11 Version 0.6.3
+ * All Services
+   - Upgraded azure storage client library to 8.5.0   
+ * File Service
+   - Support File Share Snapshot
+   
+2017.09.25 Version 0.6.2
+ * All Services
+   - Upgraded to Netstandard 2.0
+   - Make the TransferException format consistent, now all TransferException with StorageException will have StorageException as inner exception.
+      - The TransferException with following 2 error codes won't expose inner exception details in TransferException Message any more
+         - UncategorizedException
+         - FailToVadlidateDestination
+      - The TransferException with following 3 error codes will have StorageException as inner exception if any
+         - SourceDoesNotExistException
+         - DestinationBlobTypeNotMatch
+         - SourceBlobDoesNotExistException
+   
+2017.08.31 Version 0.6.1
+ * All Services
+   - Upgraded azure storage client library to 8.4.0
+
+2017.07.14 Version 0.6.0
+ * All Services
+   - Upgraded azure storage client library to 8.1.4
+   - Supported long path files in .Net and .Net Core.
+   - Merged PR #76 to add a constructor for TransferStatus.
+
+2017.06.01 Version 0.5.3
+ * All Services
+   - Upgraded azure storage client library to 8.1.3
+
+2017.05.09 Version 0.5.2
+ * All Services
+   - Fix a race condition issue in DataMovement on .Net Core
+
+2017.04.19 Version 0.5.1
+ * All Services
+   - Upgraded azure storage client library to 8.1.1
+   
+ * Blob Service
+   - Removed page blob size checking in uploading to leverage validation in Azure Storage Server
+
+2016.12.29 Version 0.5.0
+ * All Services
+   - Upgraded azure storage client library to 8.0.0
+   - Updated DataMovement.sln to Visual Studio 2015 solution file
+
+ * Blob Service
+   - Added large block blob transfer support.
+   - Added new option `TransferManager.Configurations.BlockSize` to specify the size of blocks when transferring data to block blob
+   - Fixed the issue that copying source blob snapshot with name which includes special characters failed
+
+2016.12.06 Version 0.4.1
+ * Blob Service
+   - Fixed an issue that it cannot transfer data with an older version SAS token
+
+2016.11.04 Version 0.4.0
+ * All Services
+   - Upgraded azure storage client library to 7.2.1
+   - Added an interface to support to output transferring checkpoint to stream which resolves the potential OutOfMemory issue when there are too many failed transfers files.
+   - Changed TransferContext to SingleTransferContext for single file uploading/downloading/copying and DirectoryTransferContext for directory uploading/downloading/copying
+   - Added a callback ShouldTransferCallback which can be used to determine whether or not to upload/download/copy a specific file in DirectoryTransferContext
+   - Added a callback SetAttributesCallback to set destination's attributes in memory. The attributes set in this callback will be sent to azure storage service before transferring is completed
+   - Removed ContentType property that SetAttributesCallback can be used to set destination content type
+   - Renamed OverwriteCallback to ShouldOverwriteCallback
+   - Added static interface ForceOverwrite to overwrite all existing destination. With this callback assigned to ShouldOverwriteCallback, supports downloading/copying to destination without READ permission
+ * Blob
+   - Added support to indicate virtual directory delimiter when downloading/copying from blob source
+
+2016.08.26 Version 0.3.0
+ * Upgrade azure storage client library to 7.2.0
+ * Fixed a bug that ParallelOperations setting doesn't take effect
+ * Fixed a bug of randomly throwing exception when transferring a directory
+ * Removed directory downloading/copying interfaces without DownloadOptions/CopyOptions 
+ * Changed the return value for directory transferring interfaces from Task to Task<TransferStatus> 
+ * Support to work with the RTM release of .Net Core 1.0 
+
+2015.12.28 Version 0.2.0
+ * Support download, upload, copy directory (local file directory, blob virtual directory, file share directory) 
+ * Support transfer directory in recursive mode or flat mode 
+ * Support specify the file pattern when copying files and directories 
+ * Support download snapshots under directories 
+ * Provide Event to get single file transfer result in a transfer 
+ * Change TransferConfigurations.UserAgentSuffix to TransferConfigurations.UserAgentPrefix
+
+2015.07.17 Version 0.1.0
+ * Initial Release

@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B821E031-09CC-48F0-BDC6-2793228D4027}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Azure.Storage.DataMovement</RootNamespace>
+    <AssemblyName>Microsoft.Azure.Storage.DataMovement</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <TargetFrameworkProfile />
+    <DefineConstants>CODE_ACCESS_SECURITY;BINARY_SERIALIZATION;$(DefineConstants)</DefineConstants>
+    <RestorePackages>true</RestorePackages>
+    <WINDOWSDESKTOP />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST_HOOK;$(DefineConstants)</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\tools\analysis\fxcop\azure-storage-dm.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <DocumentationFile>bin\Debug\Microsoft.Azure.Storage.DataMovement.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\tools\analysis\fxcop\azure-storage-dm.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\Microsoft.Azure.Storage.DataMovement.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>true</DelaySign>
+    <AssemblyOriginatorKeyFile>..\tools\strongnamekeys\fake\windows.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.Blob, Version=11.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.Blob.11.2.3\lib\net452\Microsoft.Azure.Storage.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.Common, Version=11.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.Common.11.2.3\lib\net452\Microsoft.Azure.Storage.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.File, Version=11.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.File.11.2.3\lib\net452\Microsoft.Azure.Storage.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\tools\AssemblyInfo\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AzureFileDirectorySDDLCache.cs" />
+    <Compile Include="ChunkedMemoryStream.cs" />
+    <Compile Include="CopyMethod.cs" />
+    <Compile Include="DirectoryListingScheduler.cs" />
+    <Compile Include="Extensions\StorageCopyState.cs" />
+    <Compile Include="FileNativeMethods.cs" />
+    <Compile Include="FileSecurityNativeMethods.cs" />
+    <Compile Include="FileSecurityOperations.cs" />
+    <Compile Include="LongPathFile.cs" />
+    <Compile Include="LongPathFileStream.cs" />
+    <Compile Include="PreserveSMBPermissions.cs" />
+    <Compile Include="TestHook\FaultInjectionPoint.cs" />
+    <Compile Include="DirectoryTransferContext.cs" />
+    <Compile Include="Interop\Interop.cs" />
+    <Compile Include="Interop\Interop.Linux.cs" />
+    <Compile Include="Interop\Interop.OSX.cs" />
+    <Compile Include="Interop\Interop.Windows.cs" />
+    <Compile Include="JournalItem.cs" />
+    <Compile Include="MD5Wrapper.cs" />
+    <Compile Include="Exceptions\TransferSkippedException.cs" />
+    <Compile Include="NativeMD5.cs" />
+    <Compile Include="SingleTransferContext.cs" />
+    <Compile Include="StreamJournal.cs" />
+    <Compile Include="SerializationHelper\SerializableCloudBlobDirectory.cs" />
+    <Compile Include="SerializationHelper\SerializableCloudFile.cs" />
+    <Compile Include="SerializationHelper\SerializableCloudFileDirectory.cs" />
+    <Compile Include="SerializationHelper\SerializableFileRequestOptions.cs" />
+    <Compile Include="SerializationHelper\SerializableRequestOptions.cs" />
+    <Compile Include="TestHook\TestHookCallbacks.cs" />
+    <Compile Include="TransferCallbacks.cs" />
+    <Compile Include="TransferCheckpoint.cs" />
+    <Compile Include="TransferCollection.cs" />
+    <Compile Include="TransferContext.cs" />
+    <Compile Include="TransferControllers\AsyncCopyControllers\BlobAsyncCopyController.cs" />
+    <Compile Include="TransferControllers\AsyncCopyControllers\FileAsyncCopyController.cs" />
+    <Compile Include="TransferControllers\AsyncCopyControllers\AsyncCopyController.cs" />
+    <Compile Include="TransferControllers\DummyTransferController.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\AppendBlobServiceSideSyncCopyController.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\BlockBlobServiceSideSyncCopyController.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\FileServiceSideSyncCopyController.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\PageBlobServiceSideSyncCopyController.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\RangeBasedServiceSideSyncCopy.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyDest\AppendBlobDestHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyDest\BlobDestHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyDest\BlockBlobDestHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyDest\IDestHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyDest\FileDestHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyDest\PageBlobDestHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopySource\BlobSourceHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopyController.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopySource\FileSourceHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopySource\PageBlobSourceHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopySource\IRangeBasedSourceHandler.cs" />
+    <Compile Include="TransferControllers\ServiceSideSyncCopyControllers\ServiceSideSyncCopySource\ISourceHandler.cs" />
+    <Compile Include="TransferControllers\TransferReaders\CloudFileReader.cs" />
+    <Compile Include="TransferControllers\TransferReaders\PageBlobReader.cs" />
+    <Compile Include="TransferControllers\TransferReaders\RangeBasedReader.cs" />
+    <Compile Include="TransferControllers\TransferReaders\StreamedReader.cs" />
+    <Compile Include="TransferControllers\TransferReaderWriterBase.cs" />
+    <Compile Include="TransferControllers\SyncTransferController.cs" />
+    <Compile Include="TransferControllers\TransferReaders\BlockBasedBlobReader.cs" />
+    <Compile Include="TransferControllers\TransferWriters\AppendBlobWriter.cs" />
+    <Compile Include="TransferControllers\TransferWriters\BlockBlobWriter.cs" />
+    <Compile Include="TransferControllers\TransferWriters\CloudFileWriter.cs" />
+    <Compile Include="TransferControllers\TransferWriters\PageBlobWriter.cs" />
+    <Compile Include="TransferControllers\TransferWriters\RangeBasedWriter.cs" />
+    <Compile Include="TransferControllers\TransferWriters\StreamedWriter.cs" />
+    <Compile Include="TransferEnumerators\AzureBlobEntry.cs" />
+    <Compile Include="TransferEnumerators\AzureFileDirectoryEntry.cs" />
+    <Compile Include="TransferEnumerators\AzureBlobEnumerator.cs" />
+    <Compile Include="TransferEnumerators\AzureFileEntry.cs" />
+    <Compile Include="TransferEnumerators\AzureFileEnumerator.cs" />
+    <Compile Include="TransferEnumerators\AzureFileListContinuationToken.cs" />
+    <Compile Include="TransferEnumerators\AzureBlobListContinuationToken.cs" />
+    <Compile Include="TransferEnumerators\AzureFileToAzureNameResolver.cs" />
+    <Compile Include="TransferEnumerators\AzureNameResolver.cs" />
+    <Compile Include="TransferEnumerators\AzureToFileNameResolver.cs" />
+    <Compile Include="TransferEnumerators\AzureBlobToAzureFileNameResolver.cs" />
+    <Compile Include="TransferEnumerators\DirectoryEntry.cs" />
+    <Compile Include="TransferEnumerators\EnumerateDirectoryHelper.cs" />
+    <Compile Include="TransferEnumerators\ErrorEntry.cs" />
+    <Compile Include="TransferEnumerators\FileEntry.cs" />
+    <Compile Include="TransferEnumerators\FileEnumerator.cs" />
+    <Compile Include="TransferEnumerators\FileHierarchyEnumerator.cs" />
+    <Compile Include="TransferEnumerators\FileListContinuationToken.cs" />
+    <Compile Include="TransferEnumerators\AzureBlobToAzureBlobNameResolver.cs" />
+    <Compile Include="TransferEnumerators\FileToAzureFileNameResolver.cs" />
+    <Compile Include="TransferEnumerators\ITransferEnumerator.cs" />
+    <Compile Include="TransferEnumerators\FileToAzureBlobNameResolver.cs" />
+    <Compile Include="TransferEnumerators\INameResolver.cs" />
+    <Compile Include="TransferEnumerators\ListContinuationToken.cs" />
+    <Compile Include="TransferEnumerators\SerializableListContinuationToken.cs" />
+    <Compile Include="TransferEnumerators\TaskQueue.cs" />
+    <Compile Include="TransferEnumerators\TransferEntry.cs" />
+    <Compile Include="TransferEnumerators\TransferEnumeratorBase.cs" />
+    <Compile Include="TransferEventArgs.cs" />
+    <Compile Include="TransferJobs\AzureBlobDirectoryLocation.cs" />
+    <Compile Include="TransferJobs\AzureBlobLocation.cs" />
+    <Compile Include="TransferJobs\AzureFileDirectoryLocation.cs" />
+    <Compile Include="TransferJobs\AzureFileLocation.cs" />
+    <Compile Include="TransferJobs\DirectoryLocation.cs" />
+    <Compile Include="TransferJobs\DirectoryTransfer.cs" />
+    <Compile Include="TransferJobs\FileLocation.cs" />
+    <Compile Include="TransferJobs\FlatDirectoryTransfer.cs" />
+    <Compile Include="TransferJobs\HierarchyDirectoryTransfer.cs" />
+    <Compile Include="TransferJobs\SerializableTransferLocation.cs" />
+    <Compile Include="TransferJobs\SingleObjectCheckpoint.cs" />
+    <Compile Include="TransferJobs\SingleObjectTransfer.cs" />
+    <Compile Include="TransferJobs\StreamLocation.cs" />
+    <Compile Include="TransferJobs\SubDirectoryTransfer.cs" />
+    <Compile Include="TransferJobs\Transfer.cs" />
+    <Compile Include="TransferJobs\TransferJob.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Exceptions\TransferErrorCode.cs" />
+    <Compile Include="Exceptions\TransferException.cs" />
+    <Compile Include="Extensions\StorageExtensions.cs" />
+    <Compile Include="GlobalMemoryStatusNativeMethods.cs" />
+    <Compile Include="MemoryManager.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MD5HashStream.cs" />
+    <Compile Include="SerializationHelper\SerializableAccessCondition.cs" />
+    <Compile Include="SerializationHelper\SerializableBlobRequestOptions.cs" />
+    <Compile Include="SerializationHelper\SerializableCloudBlob.cs" />
+    <Compile Include="TransferControllers\ITransferController.cs" />
+    <Compile Include="TransferControllers\TransferControllerBase.cs" />
+    <Compile Include="TransferJobs\TransferJobStatus.cs" />
+    <Compile Include="TransferJobs\TransferMethod.cs" />
+    <Compile Include="TransferJobs\TransferLocation.cs" />
+    <Compile Include="TransferJobs\TransferLocationType.cs" />
+    <Compile Include="TransferJobs\UriLocation.cs" />
+    <Compile Include="TransferManager.cs" />
+    <Compile Include="TransferOptions\CopyDirectoryOptions.cs" />
+    <Compile Include="TransferOptions\DirectoryOptions.cs" />
+    <Compile Include="TransferOptions\DownloadDirectoryOptions.cs" />
+    <Compile Include="TransferOptions\UploadDirectoryOptions.cs" />
+    <Compile Include="TransferStatus.cs" />
+    <Compile Include="TransferScheduler.cs" />
+    <Compile Include="TransferConfigurations.cs" />
+    <Compile Include="TransferOptions\CopyOptions.cs" />
+    <Compile Include="TransferOptions\DownloadOptions.cs" />
+    <Compile Include="TransferOptions\UploadOptions.cs" />
+    <Compile Include="TransferStatusHelpers\Attributes.cs" />
+    <Compile Include="TransferStatusHelpers\ReadDataState.cs" />
+    <Compile Include="TransferStatusHelpers\SharedTransferData.cs" />
+    <Compile Include="TransferStatusHelpers\TransferData.cs" />
+    <Compile Include="TransferStatusHelpers\TransferDataState.cs" />
+    <Compile Include="TransferStatusHelpers\TransferDownloadBuffer.cs" />
+    <Compile Include="TransferStatusHelpers\TransferDownloadStream.cs" />
+    <Compile Include="TransferStatusHelpers\TransferProgressTracker.cs" />
+    <Compile Include="Transfer_RequestOptions.cs" />
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

@@ -1,0 +1,53 @@
+Tracking Breaking Changes since 1.0.0
+   - Added a parameter in SetAttributesCallbackAsync to represent source instance, changed the delegate definition from: 
+		public delegate Task SetAttributesCallbackAsync(object)
+		to 
+		public delegate Task SetAttributesCallbackAsync(object, object)
+
+Tracking Breaking Changes since 0.12.0
+   - Changed parameter isServiceCopy of bool value to copyMethod which is an enumeration value in interfaces of CopyAsync and CopyDirectoryAsync.
+
+Tracking Breaking Changes since 0.10.1
+   - Changed base namespace from Microsoft.WindowsAzure.Storage.DataMovement to Microsoft.Azure.Storage.DataMovement, 
+     to keep align with azure storage client libraries' namespace change from Microsoft.WindowsAzure.Storage to Microsoft.Azure.Storage, assembly name is changed accordingly.
+
+Tracking Breaking Changes since 0.9.0
+
+   - Changed dependency from azure storage client library 9.3.2 to azure storage blob client library 9.4.2 and azure storage file client library 9.4.2
+     To upgrade to DataMovement Library 0.10.0 from previous version, please uninstall azure storage client library package first to avoid compiling error
+   - For DataMovement Library on .Net Framework, the minimum required .Net Framework version changed from 4.5 to 4.5.2
+
+Tracking Breaking Changes since 0.8.1
+
+   - Change to overwrite destination's metadata with source's metadata in async copying instead of keeping destination's metadata
+
+Tracking Breaking Changes since 0.7.1
+
+  - Changed following callbacks to asynchronized methods:
+    ShouldOverwriteCallback --> ShouldOverwriteCallbackAsync
+    ShouldTransferCallback --> ShouldTransferCallbackAsync
+    SetAttributesCallback --> SetAttributesCallbackAsync
+
+Tracking Breaking Changes since 0.6.6
+
+  - Changed to throwing out exception instead of starting a new transfer when resuming a transfer from or to a stream.
+
+Tracking Breaking Changes since 0.6.1
+
+  - Changed the TransferException format, the TransferException with following 2 error codes won't expose inner exception details (e.g. RequestId) in TransferException message any more
+    - UncategorizedException
+    - FailToVadlidateDestination
+  
+Tracking Breaking Changes since 0.3.0
+
+  - Changed TransferContext to SingleTransferContext for single file uploading/downloading/copying and DirectoryTransferContext for directory uploading/downloading/copying
+  - Renamed OverwriteCallback to ShouldOverwriteCallback
+  - Removed ContentType property that SetAttributesCallback can be used to set destination content type
+
+Tracking Breaking Changes since 0.2.0
+
+  - Removed directory downloading/copying interfaces without DownloadOptions/CopyOptions
+  - Changed the return value for directory transferring interfaces from Task to Task<TransferStatus>. 
+    This will no longer throw an exception if any of the subtransfers fail. 
+    In addition, you can now get the count for transferred files, failed files, and skipped files. 
+    If you'd like to see the detailed reason for a subtransfer failure, please use the FileFailed event in TransferContext.
